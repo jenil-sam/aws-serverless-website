@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Galaxy Themed Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: monospace;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      color: #fff;
+      overflow-x: hidden;
+    }
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      position: sticky;
+      top: 0;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #0ff;
+    }
+    /* Star field animation */
+    .stars {
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      animation: moveStars 60s linear infinite;
+    }
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 10000px; }
+    }
+    /* Game Section */
+    #game {
+      text-align: center;
+      margin: 40px 0;
+    }
+    canvas {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid #0ff;
+      border-radius: 10px;
+    }
+    /* Terminal Section */
+    #terminal {
+      background: #111;
+      color: #0f0;
+      padding: 20px;
+      margin: 40px;
+      border-radius: 8px;
+      font-family: monospace;
+      height: 200px;
+      overflow-y: auto;
+    }
+    #terminal::before {
+      content: "Code Terminal";
+      display: block;
+      color: #fff;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    /* Instructions Sidebar */
+    #instructions {
+      position: fixed;
+      right: 0;
+      top: 60px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 15px;
+      border-left: 2px solid #0ff;
+      max-width: 220px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    #instructions h3 {
+      margin-top: 0;
+      color: #0ff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="qualifications.html">Qualifications</a>
+    <a href="services.html">Services</a>
+  </nav>
+
+  <div class="stars"></div>
+
+  <!-- Galaxy Game -->
+  <section id="game">
+    <h2>Catch the Stars Game</h2>
+    <canvas id="gameCanvas" width="500" height="400"></canvas>
+  </section>
+
+  <!-- Instructions Sidebar -->
+  <aside id="instructions">
+    <h3>Instructions</h3>
+    <p>🪐 Drag the blue bar at the bottom with your mouse.</p>
+    <p>⭐ Catch falling yellow stars to score points.</p>
+    <p>🚀 The game keeps going—try for a high score!</p>
+  </aside>
+
+  <!-- Terminal -->
+  <section id="terminal"></section>
+
+  <script>
+    // Terminal log storing user prompts
+    const terminal = document.getElementById("terminal");
+    const prompts = [
+      "Make an inline CSS of one page that has a navbar that can be used to navigate to index.html, portfolio.html, qualifications.html and services.html",
+      "Make the page galaxy themed and make an interactive game that is also galaxy themed.",
+      "Store the prompts that I am giving and title it code terminal and make it terminal themed",
+      "instead of using a keyboard to play the game, make it so that i can drag it using a mouse and add a small instructions tab on the right side for accessibility"
+    ];
+    prompts.forEach(p => {
+      let line = document.createElement("div");
+      line.textContent = "> " + p;
+      terminal.appendChild(line);
+    });
+
+    // Galaxy Game: catch falling stars with draggable player
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    let player = { x: 220, y: 370, w: 60, h: 15 };
+    let stars = [];
+    let score = 0;
+
+    function drawPlayer() {
+      ctx.fillStyle = "#0ff";
+      ctx.fillRect(player.x, player.y, player.w, player.h);
+    }
+    function drawStars() {
+      ctx.fillStyle = "#ff0";
+      stars.forEach(s => ctx.fillRect(s.x, s.y, 10, 10));
+    }
+    function updateStars() {
+      stars.forEach(s => s.y += 3);
+      stars = stars.filter(s => {
+        if (s.y > canvas.height) return false;
+        if (s.x < player.x + player.w && s.x + 10 > player.x && s.y < player.y + player.h && s.y + 10 > player.y) {
+          score++;
+          return false;
+        }
+        return true;
+      });
+    }
+    function loop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawPlayer();
+      drawStars();
+      updateStars();
+      ctx.fillStyle = "#fff";
+      ctx.fillText("Score: " + score, 10, 20);
+      requestAnimationFrame(loop);
+    }
+    setInterval(() => stars.push({ x: Math.random() * 490, y: 0 }), 1000);
+
+    // Mouse drag to move player
+    let dragging = false;
+    canvas.addEventListener("mousedown", e => {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      if (mouseX >= player.x && mouseX <= player.x + player.w) {
+        dragging = true;
+      }
+    });
+    canvas.addEventListener("mousemove", e => {
+      if (dragging) {
+        const rect = canvas.getBoundingClientRect();
+        player.x = e.clientX - rect.left - player.w / 2;
+        if (player.x < 0) player.x = 0;
+        if (player.x > canvas.width - player.w) player.x = canvas.width - player.w;
+      }
+    });
+    canvas.addEventListener("mouseup", () => dragging = false);
+    canvas.addEventListener("mouseleave", () => dragging = false);
+
+    loop();
+  </script>
+</body>
+</html>

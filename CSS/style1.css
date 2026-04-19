@@ -1,0 +1,482 @@
+/* Index.html  */
+@import url('https://fonts.googleapis.com/css2?family=Asimovian&family=Edu+NSW+ACT+Cursive:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Asimovian&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Edu+NSW+ACT+Cursive:wght@400..700&display=swap');
+
+:root {
+  --primary-color: #500000
+}
+
+body {
+  background-color: #E0E0E0;
+  margin: 0;
+  font-family: "DM Sans";
+}
+
+.nav-bar {
+  background-color: white;
+  padding: 0.5em;
+}
+
+.nav-bar .container {
+  display: flex;
+  justify-content: space-between;
+  height: 3em;
+  text-align: center;
+  align-items: center;
+  padding: 1.2em;
+}
+
+.nav-bar .container .name {
+  color: black;
+  /* color: var(--primary-color); */
+  text-decoration: none;
+  font-size: 3em;
+  font-family: "Asimovian";
+  position: relative;
+}
+
+.nav-list .pages-list {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 3em;
+  list-style: none;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+
+}
+
+.nav-bar .container .nav-list .pages-list .home {
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;
+  fill: black;
+}
+
+
+.nav-bar .pages-list a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5em;
+  position: relative;
+}
+
+.nav-bar .pages-list a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  height: 4px;
+  width: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s;
+}
+
+.nav-bar .pages-list a:hover::after {
+  width: 100%;
+}
+
+.style-button {
+  display: block;
+  text-align: center;
+  padding: 1em;
+  border-radius: 2em;
+  color: black;
+  cursor: pointer;
+  font-size: 1em;
+
+  transition: background 0.5s, color 0.5s;
+}
+
+.style-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+section {
+  padding: 2em 2em;
+}
+
+.intro-section {
+  text-align: left;
+  margin: 0;
+
+}
+
+.intro-section .container-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.intro-section .container-intro .left-col {
+  font-size: 3em;
+  margin: 0;
+  padding: 2em;
+  align-items: center;
+
+}
+
+.intro-section .container-intro .left-col .intro {
+  margin: 0;
+}
+
+.intro-section .container-intro .left-col .skill-list {
+  display: flex;
+  justify-content: space-evenly;
+  /* or use flex-start and gap */
+  /* gap: 1em; */
+  list-style: none;
+  padding: 0;
+}
+
+.intro-section .container-intro .left-col .skill-list li {
+  background-color: white;
+  border-radius: 4em;
+  font-size: 25px;
+  padding: 0.2em 0.75em;
+  color: black;
+  transition: background 0.5s, color 0.5s;
+  cursor: pointer;
+
+}
+
+
+.intro-section .container-intro .left-col .skill-list li:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+
+.intro-section .container-intro .jenil-image {
+  margin: 0;
+  border-radius: 2em;
+  height: 50em;
+  width: 30em;
+  object-fit: cover;
+}
+
+
+.bio-section,
+.hobbies-section {
+  text-align: left;
+  margin: 0;
+  padding: 5em;
+}
+
+
+.bio-section h2,
+.hobbies-section h2 {
+  font-size: 2.5em;
+  margin: 0;
+}
+
+.bio-section p,
+.hobbies-section p {
+  font-size: 1.6em;
+  background-color: white;
+  border-radius: 0.8em;
+  margin-left: 7em;
+  line-height: 1.5;
+  padding: 0.8em;
+
+}
+
+
+/* portfolio.html */
+.current {
+  font-weight: bold;
+}
+
+
+.title-page {
+  padding: 1em;
+  margin: 0;
+  font-size: 3em;
+}
+
+.projects {
+  padding: 2em;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projects .main-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 5em;
+  padding: 5em;
+  position: relative;
+
+}
+
+.main-container h3 {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.main-container p {
+  font-size: 1.3em;
+  padding:1.4em;
+}
+
+.main-container ul {
+  font-size: 1.2em;
+}
+
+
+.container-1,
+.container-2,
+.container-3,
+.container-4 {
+  background-color: white;
+  border-radius: 3em;
+  padding: 1em;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+
+.main-container .resume-button {
+  cursor: pointer;
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10em;
+  border-color: var(--primary-color);
+  margin: 0;
+  font-size: 1em;
+  position: absolute;
+  opacity: 0;
+}
+
+/* portflio read more */
+
+.main-container .read-more-text{
+    display:none;
+}
+.read-more-text.show {
+  display: inline; 
+}
+
+.main-container .read-more-button{
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  border-radius: 10em;
+  border-color: var(--primary-color);
+  margin: 0;
+  font-size: 1em;
+  position: absolute;
+  top:94%;
+  left:86.0%;
+  font-size: 1em;
+
+}
+
+.container-1:hover,
+.container-2:hover,
+.container-3:hover,
+.container-4:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px;
+
+}
+
+
+.container-1:hover .resume-button,
+.container-2:hover .resume-button,
+.container-3:hover .resume-button,
+.container-4:hover .resume-button {
+  opacity: 1;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+
+
+
+/* qualifications */
+
+
+.resume-container {
+  padding: 2em;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.resume-container .resume-image {
+  height: 80em;
+  border-radius: 2em;
+}
+
+.resume-container .resume-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px;
+}
+
+.resume-container .button {
+  background-color: white;
+  border-radius: 4em;
+  font-size: 25px;
+  padding: 0.2em 0.75em;
+  color: black;
+  transition: background 0.5s, color 0.5s;
+  cursor: pointer;
+  border: none;
+}
+
+.resume-container button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.areas-interest {
+  display: flex;
+  padding: 2em;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  margin-top: 4em;
+
+}
+
+
+.areas-interest h3 {
+  font-size: 2em;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.areas-interest ul {
+  font-size: 1.2em;
+}
+
+
+.technical-skills .left-col {
+  background-color: white;
+  padding: 2em;
+  border-radius: 4em;
+  width: 15em;
+}
+
+
+.areas-of-interest .right-col {
+  background-color: white;
+  padding: 2em;
+  border-radius: 4em;
+  width: 50em;
+}
+
+
+.technical-skills .left-col:hover,
+.areas-of-interest .right-col:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px;
+}
+
+.skill-levels {
+  display: flex;
+  gap: 4em;
+  padding: 5em;
+  margin-left: 0em;
+}
+
+
+/* Services */
+
+.div-services {
+  padding: 2em;
+}
+
+.div-services .text-section {
+  font-size: 2em;
+  background-color: white;
+  border-radius: 3em;
+  padding: 1.5em;
+}
+
+.div-services .service-images {
+  display: flex;
+  justify-content: center;
+  gap: 4em;
+  padding: 3em;
+
+}
+
+.av {
+  height: 40em;
+  width: 30em;
+  border-radius: 2em;
+}
+
+.memorial {
+  height: 40em;
+  width: 30em;
+  border-radius: 2em;
+}
+
+.av:hover,
+.memorial:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px;
+}
+
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  padding: 2em;
+
+}
+
+.contact-info ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  gap: 1.5em;
+  padding: 0;
+}
+
+svg {
+  fill: black;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  transition: fill 0.3s;
+}
+
+
+.discord:hover {
+  transform: scale(1.2);
+}
+
+.linkedin:hover {
+  /* fill: #0A66C2; */
+  transform: scale(1.2);
+}
+
+.gmail:hover {
+  /* fill: #EA4335; */
+  transform: scale(1.2);
+}
+
+.github:hover {
+  /* fill: #03A062; */
+  transform: scale(1.2);
+}
+
+.resumeFrame {
+  width: 70vh;
+  height: 85vh;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+}
